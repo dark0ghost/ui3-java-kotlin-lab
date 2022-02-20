@@ -52,24 +52,26 @@ class PointTest {
 
     @Test
     fun testPlus(){
-        val myPointZero = Point2D()
+        val myPoint = Point2D(6, 8)
 
-        val myPoint1 = Point2D(1, 9)
+        val myPoint1 = Point2D(8, 6)
 
-        val resPoint2D = myPointZero + myPoint1
+        val resPoint2D = myPoint + myPoint1
 
-        assert(myPoint1 == resPoint2D)
+        val dataTest = Point2D(10, 10)
+
+        assert(dataTest == resPoint2D)
     }
 
     @Test
     fun testMinus(){
-        val myPoint1 = Point2D(2, 10)
+        val myPoint1 = Point2D(10, 10)
 
-        val myPoint2 = Point2D(1, 9)
+        val myPoint2 = Point2D(6, 8)
 
         val resPoint2D = myPoint1 - myPoint2
 
-        val testData = Point2D(1, 1)
+        val testData = Point2D(8, 6)
 
         assert(testData == resPoint2D)
     }

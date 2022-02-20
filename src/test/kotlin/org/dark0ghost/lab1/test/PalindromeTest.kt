@@ -1,4 +1,4 @@
-package org.dark0ghost.lab2.test
+package org.dark0ghost.lab1.test
 
 import org.dark0ghost.lab2.point.isPalindrome
 import org.junit.jupiter.api.Test
@@ -15,6 +15,5 @@ class PalindromeTest {
 
         val testPalindrome3 = "122"
         assert(!isPalindrome(testPalindrome3))
-
     }
 }
