@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.dark0ghost.lab2.test.PointTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2022-02-20T15:13:57" hostname="parrot" time="0.026">
+  <properties/>
+  <testcase name="testMinus()" classname="org.dark0ghost.lab2.test.PointTest" time="0.02"/>
+  <testcase name="testInit()" classname="org.dark0ghost.lab2.test.PointTest" time="0.001"/>
+  <testcase name="testPlus()" classname="org.dark0ghost.lab2.test.PointTest" time="0.001"/>
+  <testcase name="testEQ()" classname="org.dark0ghost.lab2.test.PointTest" time="0.001"/>
+  <testcase name="testSetter()" classname="org.dark0ghost.lab2.test.PointTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
