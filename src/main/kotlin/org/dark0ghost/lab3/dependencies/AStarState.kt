@@ -7,18 +7,14 @@ package org.dark0ghost.lab3.dependencies
  * the basic operations that the A* pathfinding algorithm needs to perform its
  * processing.
  */
-class AStarState(map: Map2D?) {
+class AStarState(val map: Map2D) {
     /** Returns the map that the A* pathfinder is navigating.  */
     /** This is a reference to the map that the A* algorithm is navigating.  */
-    val map: Map2D
 
-    /**
-     * Initialize a new state object for the A* pathfinding algorithm to use.
-     */
-    init {
-        if (map == null) throw NullPointerException("map cannot be null")
-        this.map = map
-    }// TODO:  Implement.
+
+    private val openWaypoints: HashMap<Location, Waypoint> = hashMapOf()
+    private val closeWaypoints: HashMap<Location, Waypoint> = hashMapOf()
+
 
     /**
      * This method scans through all open waypoints, and returns the waypoint
@@ -26,8 +22,7 @@ class AStarState(map: Map2D?) {
      * returns `null`.
      */
     val minOpenWaypoint: Waypoint?
-        get() =// TODO:  Implement.
-            null
+        get() = openWaypoints.minOfOrNull { it.value }
 
     /**
      * This method adds a waypoint to (or potentially updates a waypoint already
@@ -38,23 +33,26 @@ class AStarState(map: Map2D?) {
      * if* the new waypoint's "previous cost" value is less than the current
      * waypoint's "previous cost" value.
      */
-    fun addOpenWaypoint(newWP: Waypoint?): Boolean {
-        // TODO:  Implement.
-        return false
+    fun addOpenWaypoint(newWP: Waypoint): Boolean {
+        openWaypoints[newWP.location]?.let {
+            return false
+        }
+        openWaypoints[newWP.location] = newWP
+        return true
     }
 
     /** Returns the current number of open waypoints.  */
-    fun numOpenWaypoints(): Int {
-        // TODO:  Implement.
-        return 0
-    }
+    fun numOpenWaypoints(): Int = openWaypoints.size
+
 
     /**
      * This method moves the waypoint at the specified location from the
      * open list to the closed list.
      */
     fun closeWaypoint(loc: Location) {
-        // TODO:  Implement.
+        val res = openWaypoints[loc] ?: return
+        openWaypoints.remove(loc)
+        closeWaypoints[loc] = res
     }
 
     /**
@@ -62,7 +60,8 @@ class AStarState(map: Map2D?) {
      * for the specified location.
      */
     fun isLocationClosed(loc: Location): Boolean {
-        // TODO:  Implement.
-        return false
+        closeWaypoints[loc] ?: return false
+        return true
     }
 }
+
