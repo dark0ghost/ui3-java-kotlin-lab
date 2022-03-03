@@ -4,7 +4,7 @@ package org.dark0ghost.lab3.dependencies
  * This class represents a simple two-dimensional map composed of square cells.
  * Each cell specifies the cost of traversing that cell.
  */
-class Map2D constructor(width: UInt, height: UInt) {
+open class Map2D constructor(width: UInt, height: UInt) {
 
     constructor(width: Float, height: Float): this(width.toUInt(), height.toUInt())
 
@@ -17,10 +17,11 @@ class Map2D constructor(width: UInt, height: UInt) {
     private val cells: Array<IntArray> = Array(width.toInt()) { IntArray(height.toInt()) }
 
     /** The starting location for performing the A* pathfinding.  */
-    var start: Location = Location(0, height.toInt() / 2)
+    open var start: Location = Location(0, height.toInt() / 2)
 
     /** The ending location for performing the A* pathfinding.  */
-    var finish: Location = Location(width.toInt() - 1, height.toInt() / 2)
+    open var finish: Location = Location(width.toInt() - 1, height.toInt() / 2)
+
 
     /**
      * Returns true if the specified coordinates are contained within the map
