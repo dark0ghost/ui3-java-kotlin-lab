@@ -2,7 +2,7 @@ package org.dark0ghost.lab1;
 
 import org.jetbrains.annotations.NotNull;
 
-import static org.dark0ghost.lab2.point.PolindromeKtKt.isPalindrome;
+import static org.dark0ghost.lab2.polindrom.PolindromeKtKt.isPalindrome;
 
 public class Palindrome {
     public static void main(String @NotNull [] args) {

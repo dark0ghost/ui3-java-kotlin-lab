@@ -1,6 +1,6 @@
 package org.dark0ghost.lab1.test
 
-import org.dark0ghost.lab2.point.isPalindrome
+import org.dark0ghost.lab2.polindrom.isPalindrome
 import org.junit.jupiter.api.Test
 
 class PalindromeTest {

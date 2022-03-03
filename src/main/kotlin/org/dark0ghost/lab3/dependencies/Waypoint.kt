@@ -13,7 +13,7 @@ class Waypoint(
      * the root of the A* search.
      */
     var previous: Waypoint?
-) {
+): Comparable<Waypoint> {
     /** Returns the location of the waypoint.  */
     /**
      * Returns the previous waypoint in the path, or `null` if this
@@ -59,4 +59,15 @@ class Waypoint(
      */
     val totalCost: Float
         get() = previousCost + remainingCost
+
+    override fun compareTo(other: Waypoint): Int {
+        if(totalCost < other.totalCost) {
+            return -1
+        }
+        if(totalCost > other.totalCost) {
+            return 1
+        }
+        return 0
+    }
+
 }

@@ -1,4 +1,4 @@
-package org.dark0ghost.lab2.point
+package org.dark0ghost.lab2.polindrom
 
 fun reverseString(s: String): String = s.reversed()
 

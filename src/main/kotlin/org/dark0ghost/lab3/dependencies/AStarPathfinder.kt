@@ -46,7 +46,6 @@ object AStarPathfinder {
                 // list.
                 state.closeWaypoint(best.location)
             }
-
         }
         return finalWaypoint
     }
