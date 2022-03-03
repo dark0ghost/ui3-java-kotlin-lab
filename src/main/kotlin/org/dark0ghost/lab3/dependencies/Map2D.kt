@@ -18,10 +18,11 @@ class Map2D(width: Int, height: Int) {
     private val cells: Array<IntArray>
 
     /** The starting location for performing the A* pathfinding.  */
-    private var start: Location
+    var start: Location
+
 
     /** The ending location for performing the A* pathfinding.  */
-    private var finish: Location
+    var finish: Location
 
     /** Creates a new 2D map, with the specified width and height.  */
     init {
@@ -88,39 +89,5 @@ class Map2D(width: Int, height: Int) {
     fun setCellValue(x: Int, y: Int, value: Int) {
         checkCoords(x, y)
         cells[x][y] = value
-    }
-
-    /**
-     * Returns the starting location for the map.  This is where the generated
-     * path will begin from.
-     */
-    fun getStart(): Location {
-        return start
-    }
-
-    /**
-     * Sets the starting location for the map.  This is where the generated path
-     * will begin from.
-     */
-    fun setStart(loc: Location?) {
-        if (loc == null) throw NullPointerException("loc cannot be null")
-        start = loc
-    }
-
-    /**
-     * Returns the ending location for the map.  This is where the generated
-     * path will terminate.
-     */
-    fun getFinish(): Location {
-        return finish
-    }
-
-    /**
-     * Sets the ending location for the map.  This is where the generated path
-     * will terminate.
-     */
-    fun setFinish(loc: Location?) {
-        if (loc == null) throw NullPointerException("loc cannot be null")
-        finish = loc
     }
 }

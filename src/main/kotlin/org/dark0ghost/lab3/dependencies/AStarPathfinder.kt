@@ -20,10 +20,10 @@ object AStarPathfinder {
     fun computePath(map: Map2D): Waypoint? {
         // Variables necessary for the A* search.
         val state = AStarState(map)
-        val finishLoc = map.getFinish()
+        val finishLoc = map.finish
 
         // Set up a starting waypoint to kick off the A* search.
-        val start = Waypoint(map.getStart(), null)
+        val start = Waypoint(map.start, null)
         start.setCosts(0f, estimateTravelCost(start.location, finishLoc))
         state.addOpenWaypoint(start)
         var finalWaypoint: Waypoint? = null
@@ -90,7 +90,7 @@ object AStarPathfinder {
                 if (prevCost >= COST_LIMIT) continue
                 nextWP.setCosts(
                     prevCost,
-                    estimateTravelCost(nextLoc, map.getFinish())
+                    estimateTravelCost(nextLoc, map.finish)
                 )
 
                 // Add the waypoint to the set of open waypoints.  If there
