@@ -8,10 +8,17 @@ group 'org.dark0ghost'
 version '1.0-SNAPSHOT'
 
 repositories {
+    maven { url 'https://repo.kotlin.link' }
     mavenCentral()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+    gradlePluginPortal()
 }
 
 dependencies {
+    implementation 'space.kscience:kmath-complex:0.3.0-dev-17'
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
@@ -20,6 +27,7 @@ dependencies {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version = '2021.3.2'
+    plugins = ['com.intellij.java']
 }
 
 patchPluginXml {

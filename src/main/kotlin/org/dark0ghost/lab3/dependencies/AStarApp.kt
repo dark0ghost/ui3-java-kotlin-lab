@@ -160,8 +160,8 @@ class AStarApp(w: Int, h: Int) {
     private fun findAndShowPath() {
         // Create a Map2D object containing the current state of the user input.
         val map = Map2D(width, height)
-        map.setStart(startLoc)
-        map.setFinish(finishLoc)
+        map.start = startLoc
+        map.finish = finishLoc
         for (y in 0 until height) {
             for (x in 0 until width) {
                 mapCells[x][y].path = false

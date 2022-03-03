@@ -1,4 +1,5 @@
-package org.dark0ghost.lab4.component
+package org.dark0ghost.lab4.ui.component
+
 
 
 import com.intellij.util.ui.ImageUtil
@@ -10,7 +11,7 @@ import javax.swing.JComponent
 
 
 open class JImageDisplay(height: UInt, width: UInt): JComponent() {
-    private val bufferedImage: BufferedImage = ImageUtil.createImage(width.toInt(), height.toInt(), TYPE_INT_RGB)
+    private val bufferedImage: BufferedImage =  BufferedImage(width.toInt(), height.toInt(), TYPE_INT_RGB)
 
     init {
         preferredSize = Dimension(width.toInt(), height.toInt())
