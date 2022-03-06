@@ -1,6 +1,7 @@
 plugins {
     id 'org.jetbrains.intellij' version '1.4.0'
     id 'org.jetbrains.kotlin.jvm' version '1.6.10'
+    id "org.jetbrains.compose" version "1.1.0-rc01"
     id 'java'
 }
 
@@ -13,11 +14,15 @@ repositories {
     maven {
         url 'https://oss.sonatype.org/content/repositories/snapshots/'
     }
+    maven{ url "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
     gradlePluginPortal()
 }
 
 dependencies {
     implementation 'space.kscience:kmath-complex:0.3.0-dev-17'
+
+    implementation(compose.desktop.currentOs)
+
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
@@ -36,16 +41,6 @@ patchPluginXml {
       <em>most HTML tags may be used</em>"""
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-}
-
-tasks.withType(JavaCompile) {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
 
 test {
     useJUnitPlatform()

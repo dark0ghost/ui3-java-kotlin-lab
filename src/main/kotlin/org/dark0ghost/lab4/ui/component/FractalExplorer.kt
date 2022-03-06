@@ -2,7 +2,6 @@ package org.dark0ghost.lab4.ui.explorer
 
 import org.dark0ghost.lab4.fractal.FractalGenerator
 import org.dark0ghost.lab4.fractal.Mandelbrot
-import org.dark0ghost.lab4.ui.DrawableUI
 import org.dark0ghost.lab4.ui.component.JImageDisplay
 import java.awt.BorderLayout
 import java.awt.Color
@@ -17,7 +16,7 @@ import javax.swing.JFrame
 
 internal typealias SizeDisplay = Pair<UInt, UInt>
 
-class FractalExplorer(private val sizeDisplay: SizeDisplay): DrawableUI {
+class FractalExplorer(private val sizeDisplay: SizeDisplay) {
     private val jImageDisplay: JImageDisplay = JImageDisplay(sizeDisplay.first, sizeDisplay.second)
 
     private val generator: FractalGenerator = Mandelbrot()
@@ -80,7 +79,7 @@ class FractalExplorer(private val sizeDisplay: SizeDisplay): DrawableUI {
         return listOf(xCoord, yCoord)
     }
 
-    override fun createAndShowGUI() {
+    fun createAndShowGUI() {
         generator.getInitialRange(range)
         val jButton = JButton()
         jFrame = JFrame(this.javaClass.name)
@@ -103,3 +102,5 @@ class FractalExplorer(private val sizeDisplay: SizeDisplay): DrawableUI {
             get() = first * second
     }
 }
+
+fun main () = FractalExplorer(800u to 600u).createAndShowGUI()
