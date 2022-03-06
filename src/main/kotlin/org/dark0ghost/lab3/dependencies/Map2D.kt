@@ -4,12 +4,9 @@ package org.dark0ghost.lab3.dependencies
  * This class represents a simple two-dimensional map composed of square cells.
  * Each cell specifies the cost of traversing that cell.
  */
-open class Map2D constructor(width: UInt, height: UInt) {
+open class Map2D constructor(private val width: UInt,  private val height: UInt) {
 
     constructor(width: Float, height: Float): this(width.toUInt(), height.toUInt())
-
-    private val height: UInt = height
-    private val width: UInt = width
 
     /**
      * The actual map data that the pathfinding algorithm needs to navigate.

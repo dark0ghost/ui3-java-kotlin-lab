@@ -2,7 +2,6 @@ package org.dark0ghost.lab4.ui.component
 
 
 
-import com.intellij.util.ui.ImageUtil
 import java.awt.Dimension
 import java.awt.Graphics
 import java.awt.image.BufferedImage
@@ -32,11 +31,8 @@ open class JImageDisplay(height: UInt, width: UInt): JComponent() {
 
     fun drawPixel(x: Int, y: Int, color: Int) = bufferedImage.setRGB(x, y, color)
 
-
     override fun paintComponent(g: Graphics){
         super.paintComponent(g)
         g.drawImage(bufferedImage, 0, 0, bufferedImage.width, bufferedImage.height, null);
     }
-
-    companion object
 }
