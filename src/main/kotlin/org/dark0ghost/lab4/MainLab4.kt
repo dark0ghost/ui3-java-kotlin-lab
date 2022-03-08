@@ -148,7 +148,6 @@ fun drawPixel(x: Int, y: Int) {
         else -> {
             val hue = 0.7f + numIter.toFloat() / 200f
             val rgbColor: Int = java.awt.Color.HSBtoRGB(hue, 1f, 1f)
-            println("rgb color $rgbColor - iter $numIter")
             jImageDisplay.drawPixel(x, y, rgbColor)
         }
     }
