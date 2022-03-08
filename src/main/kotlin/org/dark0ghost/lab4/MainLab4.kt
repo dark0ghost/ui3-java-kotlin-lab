@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.ComposePanel
 import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.dark0ghost.lab4.fractal.FractalGenerator
@@ -33,9 +34,14 @@ internal typealias SizeDisplay = Pair<UInt, UInt>
 
 private val sizeDisplay = 600u to 600u
 
+private val jImageDisplay: JImageDisplay = JImageDisplay(sizeDisplay.first, sizeDisplay.second)
+
+private val generator: FractalGenerator = Mandelbrot()
+
+private var range: Rectangle2D.Double = Rectangle2D.Double()
+
 fun main() = SwingUtilities.invokeLater {
     generator.getInitialRange(range)
-    val jImageDisplay = JImageDisplay(sizeDisplay.first, sizeDisplay.second)
     jImageDisplay.addMouseListener(Mouse())
     jImageDisplay.layout = BorderLayout()
     val window = JFrame("Lab4")
@@ -62,7 +68,7 @@ fun main() = SwingUtilities.invokeLater {
         setSize(sizeDisplay.first.toInt(), sizeDisplay.second.toInt())
     }
 
-   composePanel.setContent {
+    composePanel.setContent {
         ComposeContent()
     }
 
@@ -89,13 +95,6 @@ fun ComposeContent() {
     }
 }
 
-private val jImageDisplay: JImageDisplay = JImageDisplay(sizeDisplay.first, sizeDisplay.second)
-
-private val generator: FractalGenerator = Mandelbrot()
-
-private val range: Rectangle2D.Double = Rectangle2D.Double()
-
-
 private class Mouse : MouseAdapter() {
     override fun mouseClicked(e: MouseEvent) {
         generator.apply {
@@ -117,15 +116,18 @@ private class Mouse : MouseAdapter() {
 }
 
 
-private fun drawFractal() = runBlocking {
-    (0u until sizeDisplay.first).forEach { x ->
-        (0u until sizeDisplay.second).forEach { y ->
-            launch(Dispatchers.Default) {
-                println("x - $x, y - $y")
-                drawPixel(x.toInt(), y.toInt())
+private fun drawFractal() {
+    runBlocking {
+        (0u until sizeDisplay.first).forEach { x ->
+            (0u until sizeDisplay.second).forEach { y ->
+                launch(Dispatchers.Default) {
+                    println("x - $x, y - $y")
+                    drawPixel(x.toInt(), y.toInt())
+                }
             }
         }
     }
+    println("repaint")
     jImageDisplay.repaint()
 }
 
@@ -141,7 +143,6 @@ fun drawPixel(x: Int, y: Int) {
         range.y, range.y + range.width,
         sizeDisplay.display, y
     )
-    println("xCord - $xCoord, yCord - $yCoord")
     when (val numIter = generator.numIterations(xCoord to yCoord)) {
         -1 -> jImageDisplay.drawPixel(x, y, 0)
         else -> {

@@ -30,7 +30,6 @@ class Mandelbrot: FractalGenerator {
          * Если количество максимальных итераций достигнуто, возвращаем -1, чтобы
          * указать, что точка не вышла за границу.
          */
-        println("iter -- $iteration,x:$x,y:$y")
         return if (iteration == MAX_ITERATIONS) {
             -1
         } else iteration.toInt()

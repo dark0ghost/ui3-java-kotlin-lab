@@ -14,6 +14,7 @@ open class JImageDisplay(height: UInt, width: UInt): JComponent() {
 
     init {
         preferredSize = Dimension(width.toInt(), height.toInt())
+        super.setPreferredSize(Dimension(width.toInt(), height.toInt()))
     }
 
     fun clearImage() {
