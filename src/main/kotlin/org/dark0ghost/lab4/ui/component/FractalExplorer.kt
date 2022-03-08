@@ -15,6 +15,7 @@ import javax.swing.JFrame
 
 internal typealias SizeDisplay = Pair<UInt, UInt>
 
+@Deprecated("use MainLab4")
 class FractalExplorer(private val sizeDisplay: SizeDisplay) {
     private val jImageDisplay: JImageDisplay = JImageDisplay(sizeDisplay.first, sizeDisplay.second)
 
@@ -100,5 +101,3 @@ class FractalExplorer(private val sizeDisplay: SizeDisplay) {
             get() = first * second
     }
 }
-
-fun main () = FractalExplorer(1200u to 1200u).createAndShowGUI()
