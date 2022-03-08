@@ -60,6 +60,7 @@ interface FractalGenerator {
             size: UInt, coord: Int
         ): Double {
             require(coord in 0 until size.toInt())
+            println("rangeMin $rangeMin")
             val range = rangeMax - rangeMin
             return rangeMin + range * coord.toDouble() / size.toDouble()
         }
