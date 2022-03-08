@@ -1,9 +1,23 @@
 package org.dark0ghost.lab4.fractal
 
+import space.kscience.kmath.complex.Complex
+import space.kscience.kmath.complex.ComplexField.plus
+import space.kscience.kmath.complex.ComplexField.times
+import space.kscience.kmath.complex.r
 import java.awt.geom.Rectangle2D
 
 class Mandelbrot: FractalGenerator {
 
+    private fun mand(z0: Complex, max: Int = MAX_ITERATIONS.toInt()): Int {
+        var z: Complex = z0
+        for (t in 0 until max) {
+            if (z.r > 2.0) return t
+            z = z.times(z) + (z0)
+        }
+        return -1
+    }
+
+    @Deprecated("use mand")
     private fun numIterations(x: Double, y: Double): Int {
         /** Start with iterations at 0.  */
         var iteration = 0u
@@ -55,9 +69,12 @@ class Mandelbrot: FractalGenerator {
      * doesn't escape before the iteration limit is reached is indicated
      * with a result of -1.
      */
-    override fun numIterations(complex: Pair<Double, Double>): Int = numIterations(complex.first, complex.second)
+    override fun numIterations(complex: Pair<Double, Double>): Int =  mand(complex.complex)  //numIterations(complex.first, complex.second)
 
     companion object {
         const val MAX_ITERATIONS = 2000u
+
+        private val Pair<Double, Double>.complex
+            get() = Complex(first, second)
     }
 }

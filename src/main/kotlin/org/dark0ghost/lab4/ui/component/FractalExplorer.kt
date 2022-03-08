@@ -101,4 +101,9 @@ class FractalExplorer(private val sizeDisplay: SizeDisplay) {
     }
 }
 
-fun main () = FractalExplorer(1200u to 1200u).createAndShowGUI()
+private val y = 2
+fun main () {
+    println(y)
+    val y = 2.toDouble()
+    println(y)
+}
