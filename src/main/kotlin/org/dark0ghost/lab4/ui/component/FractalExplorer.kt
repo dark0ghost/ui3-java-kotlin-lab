@@ -1,8 +1,7 @@
-package org.dark0ghost.lab4.ui.explorer
+package org.dark0ghost.lab4.ui.component
 
 import org.dark0ghost.lab4.fractal.FractalGenerator
 import org.dark0ghost.lab4.fractal.Mandelbrot
-import org.dark0ghost.lab4.ui.component.JImageDisplay
 import java.awt.BorderLayout
 import java.awt.Color
 import java.awt.event.ActionEvent
@@ -50,9 +49,8 @@ class FractalExplorer(private val sizeDisplay: SizeDisplay) {
     private fun drawFractal() {
         0u.until(sizeDisplay.first).forEach { x ->
             0u.until(sizeDisplay.second).forEach { y ->
-                val x = x.toInt()
-                val y = y.toInt()
-                drawPixel(x, y)
+                println("x - $x, y - $y")
+                drawPixel(x.toInt(), y.toInt())
             }
         }
         jImageDisplay.repaint()
@@ -69,7 +67,7 @@ class FractalExplorer(private val sizeDisplay: SizeDisplay) {
             sizeDisplay.display, y
         )
         when (val numIter = generator.numIterations(xCoord to yCoord)) {
-            -1 -> jImageDisplay.drawPixel(xCoord.toInt(), yCoord.toInt(), 0)
+            -1 -> jImageDisplay.drawPixel(x, y, 0)
             else -> {
                 val hue = 0.7f + numIter.toFloat() / 200f
                 val rgbColor: Int = Color.HSBtoRGB(hue, 1f, 1f)
@@ -86,7 +84,7 @@ class FractalExplorer(private val sizeDisplay: SizeDisplay) {
         jFrame.apply {
             defaultCloseOperation = JFrame.EXIT_ON_CLOSE
             contentPane.apply {
-                add(jImageDisplay, BorderLayout.CENTER)
+                add(jImageDisplay, BorderLayout.SOUTH)
                 add(jButton, BorderLayout.SOUTH)
             }
             pack()
@@ -103,4 +101,4 @@ class FractalExplorer(private val sizeDisplay: SizeDisplay) {
     }
 }
 
-fun main () = FractalExplorer(800u to 600u).createAndShowGUI()
+fun main () = FractalExplorer(1200u to 1200u).createAndShowGUI()

@@ -610,8 +610,8 @@ BorderLayout.CENTER, а кнопку в позицию BorderLayout.SOUTH.
 
 ```kotlin
 frame.pack();
-frame.visible = true
-frame.resizable = false
+frame.isVisible = true
+frame.isResizable = false
 ```
 
 Они правильно расположат содержимое окна, сделают окно видимым ( после
