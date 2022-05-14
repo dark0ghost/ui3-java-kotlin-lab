@@ -1,6 +1,7 @@
 plugins {
     id 'org.jetbrains.intellij' version '1.4.0'
     id 'org.jetbrains.kotlin.jvm' version '1.6.20'
+    id "org.jetbrains.compose" version "1.1.0-rc01"
     id 'java'
 }
 
@@ -8,10 +9,21 @@ group 'org.dark0ghost'
 version '1.0-SNAPSHOT'
 
 repositories {
+    maven { url 'https://repo.kotlin.link' }
     mavenCentral()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+    maven{ url "https://maven.pkg.jetbrains.space/public/p/compose/dev" }
+    gradlePluginPortal()
 }
 
 dependencies {
+    implementation 'space.kscience:kmath-complex:0.3.0-dev-17'
+
+    implementation(compose.desktop.currentOs)
+
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
     implementation("io.ktor:ktor-client-core:2.0.0")
     implementation "io.ktor:ktor-client-apache:2.0.0"
@@ -26,6 +38,7 @@ dependencies {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version = '2021.3.2'
+    plugins = ['com.intellij.java']
 }
 
 patchPluginXml {
@@ -34,16 +47,6 @@ patchPluginXml {
       <em>most HTML tags may be used</em>"""
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-}
-
-tasks.withType(JavaCompile) {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
 
 test {
     useJUnitPlatform()
